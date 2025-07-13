@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #475569;
+        }
+
+        .otp-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .otp-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .otp-code {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 8px;
+            margin: 10px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .otp-note {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 15px;
+        }
+
+        .expiry-notice {
+            background-color: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .expiry-notice .icon {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .expiry-notice p {
+            font-size: 14px;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .security-note {
+            background-color: #fee2e2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 25px 0;
+        }
+
+        .security-note .icon {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #dc2626;
+        }
+
+        .security-note p {
+            font-size: 14px;
+            color: #991b1b;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            background-color: #f8fafc;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .footer .company-name {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .footer .links {
+            margin-top: 20px;
+        }
+
+        .footer .links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer .links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .email-container {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .header, .content, .footer {
+                padding: 30px 20px;
+            }
+
+            .otp-code {
+                font-size: 28px;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>Email Verification</h1>
+            <p>Secure your account with this verification code</p>
+        </div>
+
+        <div class="content">
+            <div class="greeting">Hello {{name}} 👋</div>
+
+            <div class="message">
+                We received a request to verify your email address. To complete the verification process, please use the One-Time Password (OTP) below:
+            </div>
+
+            <div class="otp-container">
+                <div class="otp-label">Your Verification Code</div>
+                <div class="otp-code">{{otp}}</div>
+                <div class="otp-note">Enter this code to verify your email</div>
+            </div>
+
+            <div class="expiry-notice">
+                <div class="icon">⏰</div>
+                <p><strong>This code expires in 10 minutes</strong></p>
+            </div>
+
+            <div class="security-note">
+                <div class="icon">🔒</div>
+                <p><strong>Security reminder:</strong></p>
+                <p>• Never share this code with anyone</p>
+                <p>• We will never ask for your verification code via phone or email</p>
+                <p>• If you didn't request this verification, please ignore this email</p>
+            </div>
+
+            <div class="message">
+                If you have any questions or need assistance, please don't hesitate to contact our support team.
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>This email was sent by <span class="company-name">Your Company Name</span></p>
+            <p>© 2025 Your Company Name. All rights reserved.</p>
+            <div class="links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Support</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
